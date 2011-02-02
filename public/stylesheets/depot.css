@@ -175,4 +175,14 @@
   font-weight: bold;
   border-top: 1px solid #595;
 }
+
+#store .remove_item a:hover{
+	text-decoration:none;
+}
+
+#store .remove_item img{
+	border:0px;
+	width:20px;
+	height:20px;
+}
 /* END:cartmain */

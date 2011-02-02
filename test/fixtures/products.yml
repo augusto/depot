@@ -8,6 +8,18 @@ ruby:
     delivered fast, you should add Ruby to your toolbox.
   price: 49.50
   image_url: ruby.png
+  
+rails_test_prescriptions:
+    title: Rails Test Prescriptions
+    description:
+      Rails Test Prescriptions is a comprehensive guide to testing
+      Rails applications, covering Test-Driven Development from both a
+      theoretical perspective (why to test) and from a practical perspective
+      (how to test effectively). It covers the core Rails testing tools and
+      procedures for Rails 2 and Rails 3, and introduces popular add-ons,
+      including Cucumber, Shoulda, Machinist, Mocha, and Rcov.
+    price: 43.75
+    image_url: rtp.png
 
 one:
   title: MyString
@@ -15,8 +27,3 @@ one:
   image_url: MyString
   price: 9.99
 
-two:
-  title: MyString
-  description: MyText
-  image_url: MyString
-  price: 9.99

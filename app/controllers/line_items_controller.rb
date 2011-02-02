@@ -40,13 +40,13 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.xml
   def create
-    @cart = current_cart
-    @line_item = @cart.add_product(params[:product_id])
+    cart = current_cart
+    @line_item = cart.add_product(params[:product_id])
     session[:counter] = 0;
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to(@line_item.cart) }
+        format.html { redirect_to(cart) }
         format.xml  { render :xml => @line_item, :status => :created, :location => @line_item }
       else
         format.html { render :action => "new" }
@@ -74,11 +74,13 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.xml
   def destroy
-    @line_item = LineItem.find(params[:id])
-    @line_item.destroy
-
+    cart = current_cart
+    product_id = params[:product_id]
+    
+    cart.remove_product product_id
+    
     respond_to do |format|
-      format.html { redirect_to(line_items_url) }
+      format.html { redirect_to(cart, :notice => "Item removed") }
       format.xml  { head :ok }
     end
   end

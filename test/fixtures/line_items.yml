@@ -7,3 +7,15 @@ one:
 two:
   product_id: 1
   cart_id: 1
+  
+one_ruby:
+    cart: ruby_cart
+    product: ruby
+    quantity: 2
+    price: 22.50
+
+two_rails_test_prescriptions:
+    cart: ruby_cart
+    product: rails_test_prescriptions
+    quantity: 1
+    price: 10
