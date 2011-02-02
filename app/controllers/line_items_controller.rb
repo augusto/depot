@@ -73,7 +73,7 @@ class LineItemsController < ApplicationController
 
   # DELETE /line_items/1
   # DELETE /line_items/1.xml
-  def destroy
+  def destroy()
     cart = current_cart
     product_id = params[:product_id]
     

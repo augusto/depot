@@ -2,10 +2,9 @@
 <table>
   <% for item in @cart.line_items %> 
     <tr>
-	  <td><%= button_to 'D', {:id => item.product, :controller => :line_items }, {:method => :delete} %></td>
-	  <!-- <td class="remove_item"><%= link_to image_tag("trash.jpg"), 
-	                  line_items_path( :product_id => item.product),
-	                  :method => :delete %></td> -->
+	  <td class="remove_item"><%= link_to image_tag("trash.jpg"), 
+	                                      line_item_path(:product_id => item.product),
+	                                      :method => :delete %></td>
 	  <td><%= item.quantity %>&times;</td>
 	  <td><%= item.product.title %></td>
 	  <td class="item_price"><%= number_to_currency(item.total_price) %></td>

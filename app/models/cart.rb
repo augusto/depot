@@ -17,6 +17,11 @@ class Cart < ActiveRecord::Base
   
   def remove_product(product_id)
     line_item = line_items.where(:product_id => product_id).first
+    
+    if ! line_item
+      print "wohoo... what happened, I didn't get a product id"
+      return
+    end  
 
     line_item.quantity -= 1
     if line_item.quantity == 0
