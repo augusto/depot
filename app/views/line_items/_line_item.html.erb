@@ -1,7 +1,10 @@
 <tr id="<%= "current_item" if line_item == @current_item %>">
-  <td class="remove_item"><%= link_to image_tag("trash.jpg"), 
-                                      line_item_path(0,:product_id=>line_item.product.id),
-                                      :method => :delete, :remote => true %></td>
+  <td class="remove_item">
+	<%= form_tag line_item_path(0, :product_id => line_item.product),
+	             {:method => :delete, :remote => true} do -%>
+	  <%= image_submit_tag "trash.jpg", {:class => "delete"} %>
+	<% end %>
+  </td>
   <td><%= line_item.quantity %>&times;</td>
   <td><%= line_item.product.title %></td>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>

@@ -180,7 +180,7 @@
 	text-decoration:none;
 }
 
-#store .remove_item img{
+#store .remove_item input{
 	border:0px;
 	width:20px;
 	height:20px;
