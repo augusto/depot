@@ -7,7 +7,7 @@
 one: {}
 # column: value
 #
-two: {}
+empty: {}
 #  column: value
 
 ruby_cart: {}

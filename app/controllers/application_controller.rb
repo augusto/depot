@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   def prepare_time_for_display
     @current_time = Time.now
+    #@cart = current_cart
   end
   
   def current_cart

@@ -7,6 +7,8 @@ class LineItemsControllerTest < ActionController::TestCase
     @update = {:product_id => products(:ruby).id,
                :quantity => 2,
                :price => 12.99}
+    @session = {}    
+    @session[:cart_id] = carts(:ruby_cart).id
   end
 
   test "should get index" do
@@ -25,7 +27,7 @@ class LineItemsControllerTest < ActionController::TestCase
       post :create, @update
     end
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_path
   end
 
   test "should show line_item" do
@@ -45,18 +47,16 @@ class LineItemsControllerTest < ActionController::TestCase
 
   test "should destroy line_item when quantity reaches 0" do
     product = products(:ruby)
-    session[:cart_id] = carts(:ruby_cart).id
-    delete :destroy, {:id => 0, :product_id => products(:rails_test_prescriptions).id}, session
+    delete :destroy, {:id => 0, :product_id => products(:rails_test_prescriptions).id}, @session
 
     cart = Cart.find(session[:cart_id]);
     assert cart.line_items.count == 1,"there should be one item left in the cart"
-    assert_redirected_to cart_path(session[:cart_id])
+    assert_redirected_to store_url
   end
   
   test "should decrement quantity if it's greater than one" do
     product = products(:ruby)
-    session[:cart_id] = carts(:ruby_cart).id
-    delete :destroy, {:id => 0, :product_id => products(:ruby).id}, session
+    delete :destroy, {:id => 0, :product_id => products(:ruby).id}, @session
 
     cart = Cart.find(session[:cart_id]);
     assert_equal 2, cart.line_items.count
@@ -64,6 +64,19 @@ class LineItemsControllerTest < ActionController::TestCase
       assert_equal 1,  line_item.quantity, "line item for product #{line_item.product.title} has #{line_item.quantity}"
     end
 
-    assert_redirected_to cart_path(session[:cart_id])
+    assert_redirected_to store_url
+  end
+  
+  test "should create line_item via ajax" do 
+    @request.session[:cart_id] = carts(:empty).id
+    
+    assert_difference('LineItem.count') do
+      xhr :post, :create, :product_id => products(:ruby).id
+    end
+    assert_response :success 
+    
+    assert_select_rjs :replace_html, 'cart' do
+      assert_select 'tr#current_item td', /Programming Ruby 1.9/
+    end 
   end
 end
