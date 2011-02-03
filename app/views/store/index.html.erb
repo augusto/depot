@@ -7,9 +7,16 @@
 <% @products.each do |product| %>
   <div class="entry">
 	
-    <%= link_to image_tag(product.image_url), 
+    <!-- %= link_to image_tag(product.image_url), 
                 line_items_path(:product_id => product), 
-                html_options = {:method => :post} %>
+                html_options = {:method => :post} % -->
+
+    <%= form_tag line_items_path(:product_id => product),
+                 {:method => :create, :remote => true} do -%>
+      <%= image_submit_tag product.image_url,
+                           {:class => "image"} %>
+    <% end %>
+
     <h3><%= product.title %></h3>
     <%=sanitize product.description %>
     <div class="price_line">

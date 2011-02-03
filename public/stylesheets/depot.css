@@ -120,7 +120,7 @@
   font-family: sans-serif;
 }
 
-#store .entry img {
+#store .entry img, #store .entry .image  {
   width: 80px;
   margin-right: 5px;
   margin-bottom: 5px;
