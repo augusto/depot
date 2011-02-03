@@ -1,0 +1,8 @@
+if @cart.total_items == 0 
+  page[:cart].visual_effect :blind_up
+else
+  page.replace_html('cart', render(@cart))
+  if @current_item.quantity > 0
+    page[:current_item].visual_effect :highlight, :startcolor => "#88ff88", :endcolor => "#114411"
+  end
+end

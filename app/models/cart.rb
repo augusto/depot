@@ -30,7 +30,8 @@ class Cart < ActiveRecord::Base
     else
       line_item.save
     end
-
+    
+    line_item
   end
   
   def total_items

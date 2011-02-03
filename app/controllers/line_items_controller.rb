@@ -78,10 +78,11 @@ class LineItemsController < ApplicationController
     @cart = current_cart
     product_id = params[:product_id]
     
-    @cart.remove_product product_id
+    @line_item = @cart.remove_product product_id
     
     respond_to do |format|
       format.html { redirect_to(store_url) }
+      format.js   { @current_item = @line_item }
       format.xml  { head :ok }
     end
   end
