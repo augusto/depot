@@ -40,10 +40,25 @@ class CartsControllerTest < ActionController::TestCase
   end
 
   test "should destroy cart" do
+    @request.session[:cart_id] = carts(:ruby_cart).id
+    
     assert_difference('Cart.count', -1) do
-      delete :destroy, :id => @cart.to_param
+      delete :destroy, :id => carts(:ruby_cart).id
     end
 
     assert_redirected_to store_path
+  end
+  
+  test "remove cart when cart is emptied" do
+    @request.session[:cart_id] = carts(:ruby_cart).id
+    
+    assert_difference('Cart.count', -1) do
+      xhr :delete, :destroy, :id => carts(:ruby_cart).id
+    end
+    assert_response :success 
+    
+    # unfortunately assert_select_rjs doesn't understand :visual_effect 
+    # http://apidock.com/rails/ActionController/Assertions/SelectorAssertions/assert_select_rjs
+    #assert_select_rjs :visual_effect, :blind_up, 'cart'
   end
 end

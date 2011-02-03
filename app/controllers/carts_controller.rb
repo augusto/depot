@@ -77,9 +77,12 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.xml
   def destroy
-    @cart = Cart.find(params[:id])
-    @cart.destroy
-    session[:cart_id] = nil
+    cart_id = session[:cart_id]
+    if ! session[cart_id]
+      @cart = Cart.find(cart_id)
+      @cart.destroy
+      session[:cart_id] = nil
+    end
 
     respond_to do |format|
       format.html { redirect_to(store_url) }
