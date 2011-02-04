@@ -3,5 +3,7 @@ Thank you for your recent order from The Pragmatic Store.
 
 You ordered the following items: 
 <%= render @order.line_items %> 
+--------------------------------------------------------------
+     Total                                              <%= number_to_currency(@order.total_price) %>
 
 We'll send you a separate e-mail when your order ships.

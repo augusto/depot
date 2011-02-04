@@ -1,0 +1,17 @@
+<h3>Pragmatic Order Received</h3>
+<h4>Dear <%= @order.name %></h4>
+<p>
+	Thank you for your recent order from The Pragmatic Store.
+</p>
+<p>You ordered the following items: </p>
+<table> 
+	<tr>
+		<th colspan="2">Qty</th>
+		<th>Description</th>
+	</tr>
+	<%= render :partial => "line_items/line_item_email",
+               :collection => @order.line_items %>
+</table>
+<p>
+	We'll send you a separate e-mail when your order ships.
+</p>

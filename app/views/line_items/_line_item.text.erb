@@ -1,3 +1,4 @@
-<%= sprintf("%2d x %s",
+<%= sprintf("%2d x %-50s %s",
             line_item.quantity,
-            truncate(line_item.product.title, :length => 50)) %>
+            truncate(line_item.product.title, :length => 50),
+            number_to_currency(line_item.total_price)) %>

@@ -5,8 +5,10 @@ one:
   cart_id: 1
 
 two:
-  product_id: 1
-  cart_id: 1
+    product: ruby
+    order: one
+    quantity: 1
+    price: 22.50
   
 one_ruby:
     cart: ruby_cart
