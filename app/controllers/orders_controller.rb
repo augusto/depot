@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
       if @order.save
         cart.delete
         session[:cart_id] = nil;
-        
+        Notifier.order_received(@order).deliver
         format.html { redirect_to(store_url, :notice => 'Thanks for your order.') }
         format.xml  { render :xml => @order, :status => :created, :location => @order }
       else
