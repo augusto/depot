@@ -30,4 +30,5 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 #   gem 'webrat'
 # end
 
-gem "ZenTest", ">= 4.4.2"
+gem 'ZenTest', '>= 4.4.2'
+gem 'will_paginate', '>= 3.0.pre'
