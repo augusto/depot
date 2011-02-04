@@ -233,3 +233,13 @@
 .field_with_errors{
 	display: inline;
 }
+
+/* users */
+#user_form label {
+	float: left;
+	display: block;
+	width: 150px;
+}
+#user_form input {
+	width: 150px;
+}

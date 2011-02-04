@@ -1,4 +1,6 @@
 Depot::Application.routes.draw do
+  resources :users
+
   get "store/index"
 
   resources :products
