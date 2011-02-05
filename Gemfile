@@ -30,7 +30,8 @@ gem 'capistrano'
 #   gem 'webrat'
 # end
 
-gem 'ZenTest', '>= 4.4.2'
+
+gem 'ZenTest', '>= 4.4.2', :groups => [:development,:test]
 
 gem 'will_paginate', '>= 3.0.pre'
 
