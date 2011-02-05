@@ -7,8 +7,6 @@ class LineItemsControllerTest < ActionController::TestCase
     @update = {:product_id => products(:ruby).id,
                :quantity => 2,
                :price => 12.99}
-    @session = {}    
-    @session[:cart_id] = carts(:ruby_cart).id
   end
 
   test "should get index" do
@@ -46,8 +44,9 @@ class LineItemsControllerTest < ActionController::TestCase
   end
 
   test "should destroy line_item when quantity reaches 0" do
+    session[:cart_id] = carts(:ruby_cart).id
     product = products(:ruby)
-    delete :destroy, {:id => 0, :product_id => products(:rails_test_prescriptions).id}, @session
+    delete :destroy, {:id => 0, :product_id => products(:rails_test_prescriptions).id}
 
     cart = Cart.find(session[:cart_id]);
     assert cart.line_items.count == 1,"there should be one item left in the cart"
@@ -55,8 +54,9 @@ class LineItemsControllerTest < ActionController::TestCase
   end
   
   test "should decrement quantity if it's greater than one" do
+    session[:cart_id] = carts(:ruby_cart).id
     product = products(:ruby)
-    delete :destroy, {:id => 0, :product_id => products(:ruby).id}, @session
+    delete :destroy, {:id => 0, :product_id => products(:ruby).id}
 
     cart = Cart.find(session[:cart_id]);
     assert_equal 2, cart.line_items.count
@@ -68,7 +68,7 @@ class LineItemsControllerTest < ActionController::TestCase
   end
   
   test "should create line_item via ajax" do 
-    @request.session[:cart_id] = carts(:empty).id
+    session[:cart_id] = carts(:empty).id
     
     assert_difference('LineItem.count') do
       xhr :post, :create, :product_id => products(:ruby).id

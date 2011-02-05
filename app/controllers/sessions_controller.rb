@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :authorise
+  
   def new
     respond_to do |format|
       format.html
