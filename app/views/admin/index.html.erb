@@ -1,0 +1,9 @@
+<h1>Welcome</h1>
+
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+	
+<p>	 
+  We have <%= pluralize(@total_orders, "order") %>.
+</p>

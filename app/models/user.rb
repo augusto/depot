@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_reader :password
 
   class << self
-    def self.authenticate(name, password)
+    def authenticate(name, password)
       if user = find_by_name(name) 
         if user.hashed_password == encrypt_password(password, user.salt)
           user
