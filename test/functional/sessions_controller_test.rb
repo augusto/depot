@@ -20,8 +20,13 @@ class SessionsControllerTest < ActionController::TestCase
     assert_select '#notice', 'Invalid user/password combination'
   end
 
-  test "should logout" do
+  test "should logout via form" do
     delete :destroy
+    assert_redirected_to store_url
+  end
+
+  test "should logout via link" do
+    get :destroy
     assert_redirected_to store_url
   end
 

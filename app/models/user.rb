@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
   validate :password_must_be_present 
+  after_destroy :ensure_an_admin_remains 
   
   attr_accessor :password_confirmation
   attr_reader :password
@@ -37,5 +38,11 @@ class User < ActiveRecord::Base
   
   def generate_salt 
     self.salt = self.object_id.to_s + rand.to_s
+  end
+  
+  def ensure_an_admin_remains 
+    if User.count.zero?
+      raise "Can't delete last user"
+    end
   end
 end
