@@ -1,9 +1,9 @@
-set :user, 'augusto'
+set :user, 'depot'
 set :domain, 'depot.com'
 set :application, 'depot'
 
 # file paths
-set :repository,  "#{user}@#{domain}:git/#{application}.git"
+set :repository,  "ssh://#{user}@#{domain}/~/git/#{application}.git"
 set :deploy_to, "/var/www/depot"
 
 role :web, domain                          # Your HTTP server, Apache/etc
