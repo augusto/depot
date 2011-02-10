@@ -22,4 +22,11 @@ class Product < ActiveRecord::Base
       return false
     end
   end
+  
+  def clone
+    cloned = super
+    cloned.title += " copy"
+    
+    cloned
+  end
 end

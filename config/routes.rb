@@ -1,10 +1,7 @@
 Depot::Application.routes.draw do
   get "admin/index"
-
   get "sessions/new"
-
   get "sessions/create"
-
   get "sessions/destroy"
 
   resources :users
@@ -18,6 +15,7 @@ Depot::Application.routes.draw do
     
   resources :products do 
     get :who_bought, :on => :member
+    put :clone_product, :on => :member
   end
   
   get 'admin' => 'admin#index'

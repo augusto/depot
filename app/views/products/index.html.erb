@@ -1,5 +1,8 @@
 <div id="product_list">
   <h1>Listing products</h1>
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
 
   <table>
   <% @products.each do |product| %>
@@ -23,7 +26,10 @@
         <%= link_to 'Edit', edit_product_path(product) %><br/>
         <%= link_to 'Destroy', product, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %>
+                    :method => :delete %><br/>
+        <%= link_to 'clone', clone_product_product_path(product), 
+                    :confirm => 'Are you sure?',
+                    :method => :put %>
       </td>
     </tr>
   <% end %>

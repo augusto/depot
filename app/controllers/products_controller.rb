@@ -88,4 +88,19 @@ class ProductsController < ApplicationController
       format.xml {render :xml => @product}
     end
   end
+  
+  def clone_product
+    @product = Product.find(params[:id])
+    cloned_product = @product.clone
+    
+    respond_to do |format|
+      if cloned_product.save
+        format.html { redirect_to(products_path, :notice => "Product '#{@product.title}' was cloned.") }
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to(:back, :notice => "Product '#{@product.title}' couldn't be cloned because #{cloned_product.errors}") }
+        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 end
