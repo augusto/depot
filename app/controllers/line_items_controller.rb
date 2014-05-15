@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
-  skip_before_filter :authorise, :only => :create
-  
+  skip_before_filter :authorise, :only => [:create, :destroy]
+
   # GET /line_items
   # GET /line_items.xml
   def index
@@ -79,9 +79,9 @@ class LineItemsController < ApplicationController
   def destroy()
     @cart = current_cart
     product_id = params[:product_id]
-    
+
     @line_item = @cart.remove_product product_id
-    
+
     respond_to do |format|
       format.html { redirect_to(store_url) }
       format.js   { @current_item = @line_item }
